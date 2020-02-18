@@ -12,11 +12,11 @@ func = @(t,w)[(I2-I3)/I1*w(2)*w(3)+mu(1);
               (I3-I1)/I2*w(1)*w(3)+mu(2);
               (I1-I2)/I3*w(1)*w(2)+mu(3)];
 
-tspan = [0,50];
+tspan = [0,10];
 hg_norm = L;
 
-for w10 = -.2:.1:.2
-    for w20 = -.4:.1:4
+for w10 = -.4:.05:.4
+    for w20 = -.4:.05:.4
         if I1^2*w10^2+I2^2*w20^2 > L^2
             break;
         end
@@ -28,7 +28,7 @@ for w10 = -.2:.1:.2
         [t, x] = ode45(func, tspan, init);
         
         figure(1)
-        plot3(x(:,1),x(:,2),x(:,3));
+        plot3(I1*x(:,1),I2*x(:,2),I3*x(:,3));
         hold on
     end
 end
