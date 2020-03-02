@@ -11,7 +11,7 @@ init_2 = [0, -2, 0];
 init_3 = [0, 2.01, 0];
 
 func = @(t,x)[sig*(x(2)-x(1)); r*x(1)-x(2)-x(1)*x(3); x(1)*x(2)-b*x(3)];
-tspan = [0,5];
+tspan = [0,50];
 
 [t, x1] = ode45(func, tspan, init_1);
 [t, x2] = ode45(func, tspan, init_2);
