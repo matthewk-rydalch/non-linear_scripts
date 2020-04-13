@@ -17,7 +17,7 @@ k = 1;
 c = 1;
 B0 = 1;
 tspan = [0,100];
-init = [1,0];
+init = [-pi/2,0];
 
 %linearized system
 func1 = @(t,x)[x(2); a*(sin(x(1)) + ...
@@ -25,11 +25,11 @@ func1 = @(t,x)[x(2); a*(sin(x(1)) + ...
     *cos(x(1)))];
 %Feeback linearized system
 func2 = @(t,x)[x(2); a*(sin(x(1)) + ...
-    ( -tan(x(1)) + 1/cos(x(1)) * -k*x(2) )... % u 
+    ( -tan(x(1)) + 1/(a*cos(x(1)))*(-2*x(2)-x(1)) )... % u 
     * cos(x(1)))];
 %sliding mode control
 func3 = @(t,x)[x(2); a*(sin(x(1)) + ...
-    ( -(abs((c*x(2)+a*sin(x(1)))/a*cos(x(1)))+B0)*sign(c*x(1)+x(2)) )... % u 
+    ( -(c/a*abs(x(2))+1+B0)*sign(c*x(1)+x(2)) )... % u 
     * cos(x(1)))];
 
 
@@ -40,15 +40,16 @@ bound = pi/2;
 upper_bound = bound*ones(size(t));
 lower_bound = -upper_bound;
 
-% plot(t,X(:,1))
-% hold on
-% plot(t,X(:,2))
-% plot(t_fb,X_fb(:,1))
-% plot(t_fb,X_fb(:,2))
-plot(t_s,X_s(:,1))
+plot(t,X(:,1))
 hold on
-plot(t_s,X_s(:,2))
+plot(t,X(:,2))
+plot(t_fb,X_fb(:,1))
+hold on
+plot(t_fb,X_fb(:,2))
+% plot(t_s,X_s(:,1))
+% hold on
+% plot(t_s,X_s(:,2))
 plot(t, upper_bound)
 plot(t, lower_bound)
-legend('theta linear', 'theta dot linear')%, 'theta FB', 'theta dot FB', 'upper bound', 'lower bound')
+legend('theta linear', 'theta dot linear', 'theta FB', 'theta dot FB')%, 'upper bound', 'lower bound')
 
