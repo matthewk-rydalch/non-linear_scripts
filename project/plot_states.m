@@ -31,6 +31,6 @@ function [] = plot_states(t,x)
     plot(t,x(:,10))
     plot(t,x(:,11))
     plot(t,x(:,12))
-    legend('psi_dot', 'theta_dot', 'phi_dot')
+    legend('p', 'q', 'r')
     hold off
 end
