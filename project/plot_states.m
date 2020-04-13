@@ -1,5 +1,7 @@
 function [] = plot_states(t,x)
-
+    
+    close all
+    
     figure(1)
     hold on
     plot(t,x(:,1))
