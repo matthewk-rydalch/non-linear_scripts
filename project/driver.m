@@ -3,8 +3,12 @@
 clear;
 clc;
 
+ref.x = 0;
+ref.y = 0;
+ref.z = 0;
+ref.psi = 1;
+
 P = params();
-u = control_law(P);
-[t,x] = ode45(dynamics(u, P), P.tspan, P.x0);
+[t,x] = ode45(dynamics(P, ref), P.tspan, P.x0);
 
 plot_states(t,x);

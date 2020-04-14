@@ -15,7 +15,7 @@ function [] = plot_states(t,x)
     plot(t,x(:,4))
     plot(t,x(:,5))
     plot(t,x(:,6))
-    legend('psi', 'theta', 'phi')
+    legend('phi', 'theta', 'psi')
     hold off
     
     figure(3)
