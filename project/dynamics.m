@@ -21,9 +21,12 @@ function [dyn] = dynamics(P, ref)
     f_x = @(t,X)[X(7); %xd
                  X(8); %yd
                  X(9); %zd
-                 X(10)+X(11)*S(X(4))*T(X(5))+X(12)*(C(X(4))*T(X(5))); %phi_d
-                 X(11)*C(X(4))-X(12)*S(X(4)); %theta_d
-                 X(11)*S(X(4))/C(X(5))+X(12)*C(X(4))/C(X(5)); %psi_d
+                 X(10);
+                 X(11);
+                 X(12);
+%                  X(10)+X(11)*S(X(4))*T(X(5))+X(12)*(C(X(4))*T(X(5))); %phi_d
+%                  X(11)*C(X(4))-X(12)*S(X(4)); %theta_d
+%                  X(11)*S(X(4))/C(X(5))+X(12)*C(X(4))/C(X(5)); %psi_d
                  0; %xdd
                  0; %ydd
                  g; %zdd

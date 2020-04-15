@@ -11,9 +11,12 @@ function [v] = outer_loop(P, ref, u)
     phi_ddr = pd_control_outer(P.Kp_phi, P.Kd_phi, phi_r,4);
     th_ddr = pd_control_outer(P.Kp_th, P.Kd_th, th_r,5);
     
+    phi_ddr_sat = @(t,X)2/pi*P.phi_limit*atan(phi_ddr(t,X));
+    th_ddr_sat = @(t,X)2/pi*P.th_limit*atan(th_ddr(t,X));
+    
     v = @(t,X)[0;
-               phi_ddr(t,X);
-               th_ddr(t,X);
+               phi_ddr_sat(t,X);
+               th_ddr_sat(t,X);
                0];
 end
 
@@ -23,3 +26,7 @@ function [ddr] = pd_control_outer(Kp, Kd, xr, i)
     ddr = @(t,X)(xr(t,X)-X(i))*Kp-X(i+6)*Kd;
 
 end
+% 
+% function [x_sat] = sat(x, limit)
+%     x_sat = @(t,X)2/pi*limit*atan(x);
+% end

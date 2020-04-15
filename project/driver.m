@@ -5,7 +5,7 @@ clc;
 
 ref.x = 0;
 ref.y = 0;
-ref.z = 0;
+ref.z = 2;
 ref.psi = 1;
 
 P = params();
